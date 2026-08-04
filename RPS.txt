@@ -1,0 +1,67 @@
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+int main()
+{
+     int player_choice;
+     int computer_choice;
+     int draw_score=0;
+     int player_score=0;
+     int computer_score=0;
+     char play_again;
+     srand(time(NULL));
+    do{
+         printf("----------------------------------------------------------------------------");
+         printf("Welcome to Rock, Paper & Scissor Game ");
+         printf("----------------------------------------------------------------------------");
+         printf("make some choices like below: \n");
+         printf("\n 1 -> rock ");
+         printf("\n 2 -> paper");
+         printf("\n 3 -> scissor");
+         printf("\n Select your choice: ");
+         scanf("%d",&player_choice);
+         if (player_choice < 1 || player_choice > 3){
+             printf("Invalid");
+             continue;
+         }
+         computer_choice = (rand() % 3)+1;
+         switch(player_choice){
+             case 1:
+             printf("\n You have selected Rock ");
+             break;
+             case 2:
+             printf("\n You have selected scissors");
+             break;
+             case 3:
+             printf("\n You have selected scissor ");
+             break;
+         }
+        switch(computer_choice)
+        {
+             case 1:
+             printf("\n Computer have selected Rock");
+             break;
+             case 2:
+             printf("\n Computer have selected Paper");
+             break;
+             case 3:
+             printf("\n Computer have selected scissor ");
+        }
+        if(player_choice == computer_choice)
+            printf("Draw");
+        if((player_choice == 1 && computer_choice == 3) ||(player_choice == 2 && computer_choice == 1)||
+        (player_choice == 3 && computer_choice == 2 )){
+             printf("\n Player wins");
+             player_choice ++;
+        }
+        else{
+            printf("\n Computer Wins");
+            computer_choice ++;
+        }
+        printf("\n Do you want to play again: ");
+        scanf("%c",&play_again);
+    }while(play_again == 'Y' || play_again == 'N');
+    return 0;
+}
