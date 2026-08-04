@@ -1,0 +1,178 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+    int count = 0;
+    char transactionType[100];
+    int transactionAmount[100];
+    int transactionBalance[100];
+
+void Check_Balance(int balance) {
+       printf("\nbalance: %d\n-------- ", balance);
+}
+
+void Deposit(int *balance) {
+    int amount;
+    printf("\n-----DEPOSIT-----\n");
+    printf("Enter amount: ");
+    scanf("%d", &amount);
+     *balance += amount;
+    transactionType[count] = 'D';
+    transactionAmount[count] = amount;
+    transactionBalance[count] = *balance;
+    count ++;
+    printf("\n*Deposit Successful*\n...........................");
+}
+
+void Withdraw(int *balance) {
+     int amount;
+     printf("\n-----WITHDRAW-----\n");
+    printf("Enter amount: ");
+    scanf("%d", &amount);
+   *balance -= amount;
+    transactionType[count] = 'W';
+    transactionAmount[count] = amount;
+    transactionBalance[count] = *balance;
+    count ++;
+     printf("\n *Withdraw Successful*\n.........................");
+}
+
+void Transfer(int otp, int *balance) {
+    int n, o, amount;
+    srand(time(NULL));
+     otp = rand() % 1000 + 9000;
+     printf("\n-----TRANSFER-----\n");
+    printf("Enter Receiver's account number(9-digits): ");
+    scanf("%d", &n);
+    printf("OTP: %d", otp);
+    printf("\nEnter OTP(4-digits): ");
+    scanf("%d", &o);
+    if(o == otp) {
+        printf("enter amount: ");
+        scanf("%d", &amount);
+       
+    }
+    else {
+        printf("Invalid OTP!!");
+    }
+    *balance -= amount;
+     transactionType[count] = 'T';
+    transactionAmount[count] = amount;
+    transactionBalance[count] = *balance;
+    count ++;
+     printf("*Transfer successful*\n.............................");
+}
+ void mini_statement() {
+    int i;
+    printf("\n--------MINI STATEMENT--------\n");
+    printf("S.no\tTransaction Amount\tBalance\n");
+    for(i=0; i< count; i++) {
+        printf("\n%d.", i + 1);
+        if(transactionType[i] == 'D') {
+        printf("Deposit\t%d\t\t%d\n", transactionAmount[i], transactionBalance[i]);
+    }
+    if(transactionType[i] == 'W') {
+        printf("Withdraw\t%d\t\t%d\n", transactionAmount[i], transactionBalance[i]);
+ }
+ if(transactionType[i] == 'T') {
+        printf("Transfer\t%d\t\t%d\n", transactionAmount[i], transactionBalance[i]);
+}
+}
+}
+
+void change_pin(int pin) {
+    int p;
+    printf("\n-----CHANGE PIN-----\n");
+    printf("old pin: %d", pin);
+    printf("\nenter pin: ");
+    scanf("%d", &p);
+    if (pin == p) {
+        printf("\nenter new pin: ");
+        scanf("%d", &p);
+    }
+    else {
+        printf("invalid pin!!");
+    }
+    printf("\nnew pin: %d", p);
+    printf("\n*pin changed Successfully*\n---------------------------------");
+    }
+    
+void account_details(char name[], int account_no, int balance) {
+    
+    printf("\n-----ACCOUNT DETAILS-----\n");
+    printf("Account Holder Name: %s", name);
+    printf("\nAccount Number: %d", account_no);
+    printf("\nAccount Type: savings");
+    printf("\nBank Name: SRL bank");
+    printf("\nIFSC code: srl0011");
+    printf("\nCurrent Balance: %d\n", balance);
+}
+
+int main()
+{
+    char name[20];
+    int num;
+    int ch;
+    int otp;
+    int pin, account_no;
+    int initial_deposit = 0, balance = 0;
+    srand(time(NULL));
+    printf("**********welcome to SBI bank**********\n");
+    printf("Create your account : \n---------------------\n");
+    printf("Enter name :");
+    scanf("%s", &name);
+    printf("set pin(4-digits):");
+    scanf("%d", &pin);
+    printf("Enter your initial deposit:");
+    scanf("%d", &initial_deposit);
+    printf("Account Created Successfully.!\n");
+    account_no = rand() % 100000000 + 900000000;
+    printf("\nyour Account number: %d\n", account_no);
+    balance = initial_deposit;
+    printf("\nLogin to your Account:\n-----------------------");
+    printf("\nenter your account number(9-digits):\n ");
+    scanf("%d", &num);
+    if(num == account_no) {
+        printf("Login Successfull.!");
+    }
+    else {
+        printf("Invalid Account number");
+    }
+   
+    printf(":\nLogin Menu:\n***********");
+    do{
+    printf("\n1.Check Balance\n2.Deposit\n3.Withdraw\n4.Transfer\n5.mini statement\n6.Change Pin\n7.Account Details\n8.exit");
+    printf("\nEnter your option:");
+    scanf("%d", &ch);
+    switch(ch) {
+        case 1:
+          Check_Balance(balance);
+          break;
+        case 2:
+          Deposit(&balance);
+          break;
+        case 3:
+          Withdraw(&balance);
+          break;
+        case 4:
+          Transfer(otp, &balance);
+	      break;
+        case 5: 
+          mini_statement();
+          break;
+        case 6:
+          change_pin(pin);
+          break;
+        case 7: 
+         account_details(name, account_no, balance);
+         break;
+         case 8:
+         exit;
+        default:printf("Invalid option");
+        
+    }
+    }
+    while(ch != 8);
+
+    return 0;
+}
