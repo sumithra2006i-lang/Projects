@@ -1,0 +1,107 @@
+
+#include <stdio.h>
+#include<stdlib.h>
+#include<time.h>
+
+
+int main()
+{
+   int player_choice;
+   int computer_choice;
+   int player_score = 0;
+   int computer_score = 0;
+   int tossNum;
+   int userToss;
+   int player_batting;
+   
+   srand(time(NULL));
+   printf("welcome to hand cricket!! \n");
+   // Toss
+   printf("Choose 1-> Odd or 2-> Even : ");
+   scanf("%d",&player_choice);
+   
+    printf("Enter player_choice (1-6): ");
+    scanf("%d", &tossNum);
+    
+    computer_choice = rand()%6 + 1;
+    printf("Computer Choose :%d\n ",computer_choice);
+     if ((tossNum + computer_choice) % 2 == 0){
+         userToss = 2;
+     }
+     else{
+         userToss = 1;
+     }
+     if (userToss == player_choice) {
+         printf("You won the Toss !\n");
+         printf("Choose Bat(1) or Bowl(2):");
+
+     }
+     else{
+         printf("Computer have won the toss \n");
+         player_batting = rand() %2 + 1;
+     }
+     if (player_batting == 1) {
+         printf("Comp choose to bowl");
+    
+     }
+     else{
+         printf("Computer choose to bat:");
+     }
+     // 1st inning
+     if(player_batting == 1){
+         printf("you bat first ... ");
+        
+        while(1){
+            printf("Enter any run(1-6): ");
+                scanf("%d", &player_choice);
+                computer_choice = rand() % 6 + 1;
+                printf("Computeter have choosen : %d,computer_choice");
+
+             if (player_choice == computer_choice){
+                 printf("Out!!");
+            }
+            player_score += player_choice;
+        }
+        printf("player_score : %d\n",player_score);
+        printf("Computer bat's ...");
+        printf("Enter bowl(1-6) :");
+        scanf("%d",&player_choice);
+        
+        while(1){
+            printf("Enter any bowl(1-6): ");
+                scanf("%d", &player_choice);
+        
+            computer_choice = rand() % 6 + 1;
+            printf("Computer choose : %d",computer_choice);
+             if (player_choice == computer_choice) {
+                 printf("computer Out!!");
+                 break;
+             }
+             computer_score += computer_choice;
+        }
+        printf("\n Computer Score : %d \n, computer_score");
+        
+        printf("Player Bat's ...");
+        while(player_score <= computer_score){
+           printf("Enter any run(1-6): ");
+                scanf("%d", &player_choice);
+                computer_choice = rand() % 6 + 1;
+                printf("Computeter have choosen : %d,computer_choice");
+
+             if (player_choice == computer_choice){
+                 printf("Out!!");
+                 break;
+            }
+        }
+        
+        
+     }
+     printf(\n ========Result======\n);
+     printf("Your Score: %d\n",player_score);
+     printf("")
+    
+    
+    
+   
+    return 0;
+}

@@ -1,0 +1,60 @@
+
+#include <stdio.h>
+int add(int a, int b){
+     int res = a+b;
+     return res;
+}
+int sub(int a, int b){
+     int res = a-b;
+     return res;
+}
+int mul(int a, int b){
+     int res = a*b;
+     return res;
+}
+int div(int a, int b){
+     int res = a/b;
+     return res;
+}
+int mod(int a, int b){
+     int res = a%b;
+     return res;
+    
+}
+void main()
+
+{
+    int num1;
+    int num2;
+    char op;
+    printf("\nEnter the first num: ");
+    scanf("%d",&num1);
+    printf("\nEnter the Second Num: ");
+    scanf("%d", &num2);
+    printf("\n Enter the op:");
+    scanf(" %c",&op);
+    if(op == '+'){
+    int add_var = add(num1, num2);
+    printf("%d", add_var);
+    }
+    else if(op == '-'){
+    int sub_var = sub(num1, num2);
+    printf("%d", sub_var);
+    }
+    else if(op == '*'){
+    int mul_var = mul(num1, num2);
+    printf("%d", mul_var);
+    }
+    else if(op == '/'){
+        int div_var = div(num1,num2);
+         printf("%d",div_var);
+    }
+    else if(op == '%'){
+         int mod_var = mod(num1, num2);
+            printf("%d", mod_var);
+    }
+    else{
+    printf("Invalid Operator");
+    }
+
+}
